@@ -7,6 +7,35 @@
 //   palindrome("abba") === true
 //   palindrome("abcdefg") === false
 
-function palindrome(str) {}
+// function palindrome(str) {
+
+//     const reversed = str.split('').reduce((acc, curr) => curr + acc, '');
+
+//     return reversed === str;
+
+// }
+
+// function palindrome(str) {
+
+//     let reversed = '';
+
+//     for (let character of str) {
+//         reversed = character + reversed;
+//     }
+
+//     return reversed === str
+
+// }
+
+function palindrome(str) {
+
+    return str.split('').every((char, i) => {
+        // the first argument in the every method is the individual items in the an array
+        // the second argument is the index of the item we're currently iterating over
+        return char === str[str.length - i - 1];
+    });
+
+}
+// Definitely not an ideal solution because it doubles the time necessary. However, it will demonstrate your understanding of the problem
 
 module.exports = palindrome;
