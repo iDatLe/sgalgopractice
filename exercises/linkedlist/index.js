@@ -89,15 +89,63 @@ class LinkedList {
     }
   }
 
+  insertLast(data) {
+    const last = this.getLast();
+
+    if (last) {
+      // There are existing nodes in the chain
+      last.next = new Node(data);
+    } else {
+      // The chain is empty
+      this.head = new Node(data);
+    }
+  }
+
+  getAt(index) {
+    let counter = 0;
+    let node = this.head;
+
+    while(node) {
+      if (counter === index) {
+        return node;
+      }
+
+      node = node.next;
+      counter++;
+    }
+
+    return null;
+  }
+
+  removeAt(index) {
+    if (!this.head) {
+      return;
+    } else if (index === 0) {
+      return this.head = this.head.next;
+    }
+
+    const prev = this.getAt(index - 1);
+    // const future = this.getAt(index + 1);
+
+    if (!prev || !prev.next) {
+      return;
+    }
+
+    // return prev.next = future;
+    return prev.next = prev.next.next;
+    
+  }
+
 }
 
 const list = new LinkedList();
 
-// list.insertFirst(1);
-// list.insertFirst(2);
-// list.insertFirst(3);
+list.insertFirst(1);
+list.insertFirst(2);
+list.insertFirst(3);
 
-console.log(list.removeFirst())
+console.log(list.removeAt(6),
+list.getAt(0))
 
 
 module.exports = {
